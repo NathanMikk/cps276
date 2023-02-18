@@ -14,7 +14,7 @@ $paragraph .= $mainString."<br>"."<br>";
 }
 
 /*
-THIS GETS THE CORRECT RESULT BUT WILL TRY A LOOP.
+THIS GETS THE CORRECT RESULT BUT WITHOUT TRY A LOOP.
 TRIED A WHILE LOOP WITH $paragraph AND A COUNTER AND $paragraph++ BUT WOULD NOT CONCATENATE
 
 function myFunction(){
