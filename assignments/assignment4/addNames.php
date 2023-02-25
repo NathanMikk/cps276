@@ -5,7 +5,7 @@ class AddNames{
 
         $output="";
 
-        if(isset($_POST['addNamesButton'])) {
+        if(isset($_POST['addButton'])) {
             if(isset($_POST['names'])) {
                 $nameArray = explode(" ", $_POST['names']);
             }
@@ -16,7 +16,7 @@ class AddNames{
             sort($newNameArray);
             $output = implode("\n", $newNameArray);
         
-        }else if(isset($_POST['clearNamesButton'])) {
+        }else if(isset($_POST['clearButton'])) {
             $output = "";
         }
         return $output;
