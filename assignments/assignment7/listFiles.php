@@ -1,8 +1,8 @@
 <?php
 
 //THIS is list files
-require_once 'Crud.php';
-$crud = new Crud();
+require_once "classes/listFilesProc.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -26,15 +26,14 @@ $crud = new Crud();
     <![endif]-->
   </head>
   <body>
-    <div class="container">
-      <header>
-        <h1>List Files</h1>
-      </header>
-        <main> 
-      
-        <div id="filesList"><?php echo $crud->getFiles('list'); ?></div>
-      </main>
+    <main class="container">
+      <h1>List Files</h1>
 
-    </div>
+      <div class="form-group">
+        <a href="https://russet-v8.wccnet.edu/~nmikkelson/cps276/assignments/assignemt7/fileUpload.php">Add Files</a>
+        <p><?php echo getFiles('list'); ?></p>
+      </div>
+    </main>    
+  
   </body>
 </html>
