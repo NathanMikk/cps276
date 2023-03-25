@@ -1,8 +1,8 @@
 <?php
 
-require_once "classes/Pdo_methods.php";
+require_once 'Pdo_methods.php';
 
-public function getFiles($type){
+function getFiles($type){
 		
   /* CREATE AN INSTANCE OF THE PDOMETHODS CLASS*/
   $pdo = new PdoMethods();
@@ -28,7 +28,7 @@ public function getFiles($type){
 }
 
 /*THIS FUNCTION TAKES THE DATA FROM THE DATABASE AND RETURN AN UNORDERED LIST OF THE DATA*/
-private function createList($records){
+function createList($records){
   $list = '<ol>';
   foreach ($records as $row){
     $list .= "<li><a href={$row['file_path']} {$row['file_name']} </a></li>";

@@ -28,9 +28,9 @@ if(isset($_POST['uploadFile'])){
     <main class="container">
       <h1>File Upload</h1>
 
-        <form action="fileUploadProc.php" method="post" enctype="multipart/form-data">
+        <form action="classes/fileUploadProc.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <a href="https://russet-v8.wccnet.edu/~nmikkelson/cps276/assignments/assignemt7/listFiles.php">File List</a>
+                <a href="https://russet-v8.wccnet.edu/~nmikkelson/cps276/assignments/assignment7/listFiles.php">File List</a>
                 <p><?php echo $output ?></p>
             </div>
 
