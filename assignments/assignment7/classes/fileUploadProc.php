@@ -30,13 +30,13 @@ class fileUploadProc extends PdoMethods{
 		$pdo = new PdoMethods();
 
 		/* HERE I CREATE THE SQL STATEMENT I AM BINDING THE PARAMETERS */
-		$sql = "INSERT INTO pdf_files (file_name, file_path) VALUES (:fname, :fpath)";
+		$sql = "INSERT INTO pdf_files (file_name, file_path) VALUES (:file_name, :file_path)";
 
 			
 		/* THESE BINDINGS ARE LATER INJECTED INTO THE SQL STATEMENT THIS PREVENTS AGAIN SQL INJECTIONS */
 		$bindings = [
-			[':fname',$_POST['fname'],'str'],
-			[':fpath',$file_path,'str'],
+			[':file_name',$_POST['file_name'],'str'],
+			[':file_path',$_POST['file_path'],'str'],
 		];
 
 		/* I AM CALLING THE OTHERBINDED METHOD FROM MY PDO CLASS */

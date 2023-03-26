@@ -31,7 +31,7 @@ function getFiles($type){
 function createList($records){
   $list = '<ol>';
   foreach ($records as $row){
-    $list .= "<li><a href={$row['file_path']} {$row['file_name']} </a></li>";
+    $list .= "<li><a href={$row['file_name']} {$row['file_path']} </a></li>";
   }
   $list .= '</ol>';
   return $list;
