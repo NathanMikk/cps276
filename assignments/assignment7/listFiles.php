@@ -2,6 +2,7 @@
 
 //THIS is list files
 require_once "classes/listFilesProc.php";
+$crud = new listFilesProc();
 
 ?>
 
@@ -23,7 +24,7 @@ require_once "classes/listFilesProc.php";
 
       <div class="form-group">
         <a href="https://russet-v8.wccnet.edu/~nmikkelson/cps276/assignments/assignment7/fileUpload.php">Add Files</a>
-        <p><?php echo getFiles('list'); ?></p>
+        <p><?php echo $crud->getFiles('list'); ?></p>
       </div>
     </main>    
   

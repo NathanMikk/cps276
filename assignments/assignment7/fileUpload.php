@@ -1,10 +1,10 @@
 <?php
-
+require_once "classes/fileUploadProc.php";
 $output = "";
+$crud = new fileUploadProc();
 
 if(isset($_POST['uploadFile'])){
-    require_once "classes/fileUploadProc.php";
-    $crud = new fileUploadProc();
+    
     $output = $crud->processFile($_FILES['file']); 
 }
 
@@ -28,10 +28,10 @@ if(isset($_POST['uploadFile'])){
     <main class="container">
       <h1>File Upload</h1>
 
-        <form action="classes/fileUploadProc.php" method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <a href="https://russet-v8.wccnet.edu/~nmikkelson/cps276/assignments/assignment7/listFiles.php">File List</a>
-                <p><?php echo $output ?></p>
+                <p><?php echo $crud->getOutput(); ?></p>
             </div>
 
             <div class="form-group">
