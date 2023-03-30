@@ -1,6 +1,6 @@
 <?php
 
-require_once "../starter_scripts/classes/Pdo_methods.php";
+require_once "../classes/Pdo_methods.php";
 
 $data = json_decode($_POST[$data]);
 $name = $data->name;

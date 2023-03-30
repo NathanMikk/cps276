@@ -1,5 +1,6 @@
 <?php
-require_once "../starter_scripts/classes/Pdo_methods.php";
+
+require_once "../classes/Pdo_methods.php";
 
 $pdo = new PdoMethods();
 
