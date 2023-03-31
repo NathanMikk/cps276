@@ -4,27 +4,32 @@ require_once "../classes/Pdo_methods.php";
 
 $pdo = new PdoMethods();
 
-$sql = "SELECT * FROM names order by name;";
+$sql = "SELECT name FROM names ORDER BY name ASC";
 
-$records = $pdo->selectNotBinded($sql);
+$results = $pdo->selectNotBinded($sql);
 
-if($records == "error"){
+if($results === 'error'){
     $response = (object)[
-        "masterstatus" => "error",
-        "msg" => "Could not get names."
+        'masterstatus' => 'error',
+        'msg' => "could not get names."
     ];
+
     echo json_encode($response);
+
 } else{
     $list = "";
-    foreach($records as $name)
+    foreach($results as $name)
     {
-        $list .= "<p>" .implode($name). "</p>";
+        $list .= '<p>'.implode($name).'</p>';
     }
-    response = (object)[
-        "masterstatus" => "success",
-        "names" => $list
+
+    $response = (object)[
+        'masterstatus' => 'success',
+        'names' => $list
     ];
+
     echo json_encode($response);
+
 }
 
 ?>
