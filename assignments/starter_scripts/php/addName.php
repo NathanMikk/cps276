@@ -1,14 +1,13 @@
 <?php
 
 require_once "../classes/Pdo_methods.php";
+$pdo = new PdoMethods();
 
 $data = json_decode($_POST['data']);
 
 $name = $data->name;
 $seperateName = explode(" ", $name);
 $reverseName = "{$seperateName[1]}, {$seperateName[0]}";
-
-$pdo = new PdoMethods();
 
 $sql = "INSERT INTO names (name) VALUES (:name)";
 

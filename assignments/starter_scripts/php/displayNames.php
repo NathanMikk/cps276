@@ -1,7 +1,6 @@
 <?php
 
 require_once "../classes/Pdo_methods.php";
-
 $pdo = new PdoMethods();
 
 $sql = "SELECT name FROM names ORDER BY name ASC";
