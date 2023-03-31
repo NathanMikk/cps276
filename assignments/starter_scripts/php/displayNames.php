@@ -17,15 +17,15 @@ if($results === 'error'){
     echo json_encode($response);
 
 } else{
-    $list = "";
-    foreach($results as $name)
-    {
-        $list .= '<p>'.implode($name).'</p>';
+
+    $displayNames = "";
+    foreach($results as $name){
+        $displayNames .= '<p>'.implode($name).'</p>';
     }
 
     $response = (object)[
         'masterstatus' => 'success',
-        'names' => $list
+        'names' => $displayNames
     ];
 
     echo json_encode($response);
