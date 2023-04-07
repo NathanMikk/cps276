@@ -2,7 +2,7 @@
 
 require_once "../classes/Pdo_methods.php";
 $pdo = new PdoMethods();
-
+ 
 $data = json_decode($_POST['data']);
 
 //$name is an array should be able to just reference location of first and last name in order to reverse
