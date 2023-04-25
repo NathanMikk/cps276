@@ -1,20 +1,13 @@
 <?php
+//okay so need an if statment here if admin than the path and HTML is different
+//than that of staff
+//the default path for login should be put here?
 
-//$path = "index.php?page=welcome";
 $path = "index.php?page=login";
 
 $nav=<<<HTML
     <nav>
-        <ul>
-        <!--
-            index.php?page=login (login page)
-            index.php?page=welcome (welcome page)
-            index.php?page=addContact (add contact page)
-            index.php?page=deleteContacts (delete contacts page)
-            index.php?page=addAdmin (add admin page)
-            index.php?page=deleteAdmins (delete admins page)
-        -->
-            <li><a href="index.php?page=welcome">Welcome</a></li> 
+        <ul> 
             <li><a href="index.php?page=addContact">Add Contact</a></li>
             <li><a href="index.php?page=deleteContacts">Delete Contact(s)</a></li>
             <li><a href="index.php?page=addAdmin">Add Admin</a></li>
@@ -55,7 +48,7 @@ if(isset($_GET)){
     }
     
     else if($_GET['page'] === "logout"){
-        require_once('assignment10/logout.php');
+        require_once('pages/login.php');
         $result = init();
     }
 

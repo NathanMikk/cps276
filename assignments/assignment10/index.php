@@ -17,6 +17,9 @@ require_once('pages/routes.php');
 	<body class="container">
 		<?php
 			/* THIS IS THE PHP PAGE  */
+			if(isset($_GET) && $_GET['page'] === "login"){
+			    $nav = ""; // empty $nav variable when the current page is login
+			}
 			echo $nav;
 			
 			/* THE ACKNOWLEDGEMENT GOES HERE AS THE FIRST INDEX OF THE ARRAY  */

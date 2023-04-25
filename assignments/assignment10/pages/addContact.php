@@ -106,7 +106,7 @@ $elementsArr = [
   "age"=>[
     "action"=>"Required",
     "type"=>"radio",
-    "value"=>["ten_eightteen"=>"", "nineteen_thirty"=>"", "thiryone_fifty"=>"", "fifty_up"=>""]
+    "value"=>["10-18"=>"", "19-30"=>"", "31-50"=>"", "51+"=>""]
   ]
 ];
 
@@ -222,20 +222,20 @@ $form = <<<HTML
         
     <p><strong>Please select an age range (you must select one):</strong></p>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="age" id="age1" value="ten_eightteen"  {$elementsArr['age']['value']['ten_eightteen']}>
+      <input class="form-check-input" type="radio" name="age" id="age1" value="10-18"  {$elementsArr['age']['value']['10-18']}>
       <label class="form-check-label" for="age1">10-18</label>
     </div>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="age" id="age2" value="nineteen_thirty"  {$elementsArr['age']['value']['nineteen_thirty']}>
+      <input class="form-check-input" type="radio" name="age" id="age2" value="19-30"  {$elementsArr['age']['value']['19-30']}>
       <label class="form-check-label" for="age2">19-30</label>
     </div>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="age" id="age3" value="thiryone_fifty"  {$elementsArr['age']['value']['thiryone_fifty']}>
+      <input class="form-check-input" type="radio" name="age" id="age3" value="31-50"  {$elementsArr['age']['value']['31-50']}>
       <label class="form-check-label" for="ag3">31-50</label>
     </div>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="age" id="age4" value="fifty_up"  {$elementsArr['age']['value']['fifty_up']}>
-      <label class="form-check-label" for="age4">51 +</label>
+      <input class="form-check-input" type="radio" name="age" id="age4" value="51+"  {$elementsArr['age']['value']['51+']}>
+      <label class="form-check-label" for="age4">51+</label>
     </div>
     
 
