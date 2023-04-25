@@ -9,7 +9,7 @@ function init(){
   global $elementsArr, $stickyForm;
 
   /* IF THE FORM WAS SUBMITTED DO THE FOLLOWING  */
-  if(isset($_POST['submit'])){
+  if(isset($_POST['login'])){
 
     /*THIS METHODS TAKE THE POST ARRAY AND THE ELEMENTS ARRAY (SEE BELOW) AND PASSES THEM TO THE VALIDATION FORM METHOD OF THE STICKY FORM CLASS.  IT UPDATES THE ELEMENTS ARRAY AND RETURNS IT, THIS IS STORED IN THE $postArr VARIABLE */
     $postArr = $stickyForm->validateForm($_POST, $elementsArr);
@@ -18,7 +18,7 @@ function init(){
     if($postArr['masterStatus']['status'] == "noerrors"){
       
       /*addData() IS THE METHOD TO CALL TO ADD THE FORM INFORMATION TO THE DATABASE (NOT WRITTEN IN THIS EXAMPLE) THEN WE CALL THE GETFORM METHOD WHICH RETURNS AND ACKNOWLEDGEMENT AND THE ORGINAL ARRAY (NOT MODIFIED). THE ACKNOWLEDGEMENT IS THE FIRST PARAMETER THE ELEMENTS ARRAY IS THE ELEMENTS ARRAY WE CREATE (AGAIN SEE BELOW) */
-      return addData($_POST);
+      return getForm("",$postArr);
 
     }
     else{
@@ -46,15 +46,17 @@ $elementsArr = [
     "errorOutput"=>"",
     "type"=>"text",
 		"value"=>"test@email.com",
-		"regex"=>"email"
+		"regex"=>"email",
+    "required" => true
   ],
 
   "password"=>[
-		"errorMessage"=>"<span style='color: red; margin-left: 15px;'>Password cannot be blank and must be a valid password containing 1 letter, 1 number, 1 special character, and between 5-20 characters in length.</span>",
+		"errorMessage"=>"<span style='color: red; margin-left: 15px;'>Password cannot be blank and must contain 1 letter, 1 number, 1 special character </span>",
     "errorOutput"=>"",
     "type"=>"password",
 		"value"=>"password1!",
-		"regex"=>"password1!"
+		"regex"=>"password",
+    "action" => "Required"
   ],
    
 ];
@@ -62,13 +64,34 @@ $elementsArr = [
 /*THIS IS THEGET FROM FUCTION WHICH WILL BUILD THE FORM BASED UPON THE (UNMODIFIED OF MODIFIED) ELEMENTS ARRAY. */
 function getForm($acknowledgement, $elementsArr){
 
+  $error = '';
+
+  if(isset($_POST['login'])){
+    // IF THE USERNAME AND PASSWORD MATCH THEN REDIRECT TO 
+    if($_POST['email'] === "test@email.com" && $_POST['password'] === "password1!"){
+      
+      session_start();
+      $_SESSION['access'] = "accessGranted";
+  
+      // HERE I STORE A FIRST NAME IN THE SESSION AS WELL AND WILL DISPLAY IT ON EVERY PAGE
+      //$_SESSION['fname'] = $_POST['fname'];
+  
+      //session_regenerate_id();
+      header('location:index.php?page=welcome');
+    }
+    else {
+      $error = "Incorrect email or password";
+    }
+  }    
+
 global $stickyForm;
 
 /* THIS IS A HEREDOC STRING WHICH CREATES THE FORM AND ADD THE APPROPRIATE VALUES AND ERROR MESSAGES */
 $form = <<<HTML
     
-    <form method="post" action="index.php?page=welcome">
+    <form method="post" action="index.php?page=login">
     <h1>Login</h1>  
+    <p class="error"><?php echo $error; ?></p>
     <div class="form-group">
       <label for="email">Email {$elementsArr['email']['errorOutput']}</label>
       <input type="text" class="form-control" id="email" name="email" value="{$elementsArr['email']['value']}" >

@@ -46,14 +46,14 @@ $elementsArr = [
     "errorOutput"=>"",
     "type"=>"text",
     "value"=>"Waldo",
-		"regex"=>"name"
+		"regex"=>"name",
 	],
 
   "email"=>[
 		"errorMessage"=>"<span style='color: red; margin-left: 15px;'>Email cannot be blank and must be a valid email</span>",
     "errorOutput"=>"",
     "type"=>"text",
-		"value"=>"name@someplace.com",
+		"value"=>"test@email.com",
 		"regex"=>"email"
   ],
 
@@ -84,12 +84,16 @@ function addData($post){
 
       $pdo = new PdoMethods();
 
+      $hashed_password = password_hash($post['password'], PASSWORD_BCRYPT);
+
+      $hashed_password = substr($hashed_password, 0, 50);
+
       $sql = "INSERT INTO admins (name, email, password, status) VALUES (:name, :email, :password, :status)";
 
       $bindings = [
         [':name',$post['name'],'str'],
         [':email',$post['email'],'str'],
-        [':password',$post['password'],'str'],
+        [':password',$hashed_password,'str'],
         [':status',$post['status'],'str'],
       ];
 

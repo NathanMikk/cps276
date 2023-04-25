@@ -50,6 +50,7 @@ if(isset($_GET)){
     else if($_GET['page'] === "logout"){
         require_once('pages/login.php');
         $result = init();
+        $nav = '';
     }
 
     else if($_GET['page'] === "login"){
@@ -65,7 +66,6 @@ if(isset($_GET)){
 else {
     header('location: '.$path);
 }
-
 
 
 ?>

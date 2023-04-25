@@ -83,7 +83,7 @@ $elementsArr = [
 		"errorMessage"=>"<span style='color: red; margin-left: 15px;'>Email cannot be blank and must be a valid email</span>",
     "errorOutput"=>"",
     "type"=>"text",
-		"value"=>"name@someplace.com",
+		"value"=>"test@email.com",
 		"regex"=>"email"
   ],
 
