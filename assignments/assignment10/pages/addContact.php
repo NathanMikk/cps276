@@ -120,7 +120,7 @@ function addData($post){
 
       $pdo = new PdoMethods();
 
-      $sql = "INSERT INTO contactsTable (name, address, state, phone, email, dob, contacts, age) VALUES (:name, :address, :state, :phone, :email, :dob, :contactType, :age)";
+      $sql = "INSERT INTO contactsTable (name, address, city, state, phone, email, dob, contacts, age) VALUES (:name, :address, :city, :state, :phone, :email, :dob, :contacts, :age)";
 
       /* THIS TAKE THE ARRAY OF CHECK BOXES AND PUT THE VALUES INTO A STRING SEPERATED BY COMMAS  */
       if(isset($_POST['contacts'])){

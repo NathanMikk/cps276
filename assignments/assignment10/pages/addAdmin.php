@@ -114,8 +114,8 @@ $options = $stickyForm->createOptions($elementsArr['status']);
 /* THIS IS A HEREDOC STRING WHICH CREATES THE FORM AND ADD THE APPROPRIATE VALUES AND ERROR MESSAGES */
 $form = <<<HTML
     
-    <form method="post" action="index.php?page=addContact">
-    <h1>Add Contact</h1>  
+    <form method="post" action="index.php?page=addAdmin">
+    <h1>Add Admin</h1>  
     <div class="form-group">
       <label for="name">Name (letters only){$elementsArr['name']['errorOutput']}</label>
       <input type="text" class="form-control" id="name" name="name" value="{$elementsArr['name']['value']}" >
@@ -126,7 +126,7 @@ $form = <<<HTML
     </div>
     <div class="form-group">
       <label for="password">Password {$elementsArr['password']['errorOutput']}</label>
-      <input type="text" class="form-control" id="password" name="password" value="{$elementsArr['password']['value']}" >
+      <input type="password" class="form-control" id="password" name="password" value="{$elementsArr['password']['value']}" >
     </div>
     <div class="form-group">
       <label for="status">Status</label>

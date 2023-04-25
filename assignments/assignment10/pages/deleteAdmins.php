@@ -40,7 +40,7 @@ function init(){
         return [$output,""];
     }
     else {
-        $output = "<form method='post' action='index.php?page=deleteContacts'>";
+        $output = "<form method='post' action='index.php?page=deleteAdmins'>";
         $output .= "<input type='submit' class='btn btn-danger' name='delete' value='Delete'/><br><br><table class='table table-striped table-bordered'>
     <thead>
         <tr>
@@ -63,10 +63,10 @@ function init(){
 
     if(isset($error)){
         if($error){
-            $msg = "<p>Could not delete the contact(s)</p>";
+            $msg = "<p>Could not delete the admin(s)</p>";
         }
         else {
-            $msg = "<p>Contact(s) deleted</p>";
+            $msg = "<p>Admin(s) deleted</p>";
         }
     }
     else {

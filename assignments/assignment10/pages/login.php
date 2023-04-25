@@ -45,14 +45,14 @@ $elementsArr = [
 		"errorMessage"=>"<span style='color: red; margin-left: 15px;'>Email cannot be blank and must be a valid email</span>",
     "errorOutput"=>"",
     "type"=>"text",
-		"value"=>"name@someplace.com",
+		"value"=>"veryreal@email.com",
 		"regex"=>"email"
   ],
 
   "password"=>[
 		"errorMessage"=>"<span style='color: red; margin-left: 15px;'>Password cannot be blank and must be a valid password containing 1 letter, 1 number, 1 special character, and between 5-20 characters in length.</span>",
     "errorOutput"=>"",
-    "type"=>"text",
+    "type"=>"password",
 		"value"=>"",
 		"regex"=>"password"
   ],
@@ -75,12 +75,12 @@ $form = <<<HTML
     </div>
     <div class="form-group">
       <label for="password">Password {$elementsArr['password']['errorOutput']}</label>
-      <input type="text" class="form-control" id="password" name="password" value="{$elementsArr['password']['value']}" >
+      <input type="password" class="form-control" id="password" name="password" value="{$elementsArr['password']['value']}" >
     </div>
     </div>
 
     <div>
-      <button type="submit" name="submit" class="btn btn-primary">Login</button>
+      <button type="submit" name="login" class="btn btn-primary">Login</button>
     </div>
   </form>
 HTML;
