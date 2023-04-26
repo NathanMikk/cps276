@@ -3,5 +3,5 @@ session_start();
 /* DELETE THE SESSION VALUES*/
 session_unset();
 
-header('Location: index.php');
+header('location:index.php?page=login');
 ?>

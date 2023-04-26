@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 /* HERE I REQUIRE AND USE THE STICKYFORM CLASS THAT DOES ALL THE VALIDATION AND CREATES THE STICKY FORM.  THE STICKY FORM CLASS USES THE VALIDATION CLASS TO DO THE VALIDATION WORK.*/
 require_once('classes/StickyForm.php');
 $stickyForm = new StickyForm();
@@ -18,7 +20,7 @@ function init(){
     if($postArr['masterStatus']['status'] == "noerrors"){
       
       /*addData() IS THE METHOD TO CALL TO ADD THE FORM INFORMATION TO THE DATABASE (NOT WRITTEN IN THIS EXAMPLE) THEN WE CALL THE GETFORM METHOD WHICH RETURNS AND ACKNOWLEDGEMENT AND THE ORGINAL ARRAY (NOT MODIFIED). THE ACKNOWLEDGEMENT IS THE FIRST PARAMETER THE ELEMENTS ARRAY IS THE ELEMENTS ARRAY WE CREATE (AGAIN SEE BELOW) */
-      return getForm("",$postArr);
+      return addData($_POST);
 
     }
     else{
@@ -47,7 +49,6 @@ $elementsArr = [
     "type"=>"text",
 		"value"=>"test@email.com",
 		"regex"=>"email",
-    "required" => true
   ],
 
   "password"=>[
@@ -56,33 +57,58 @@ $elementsArr = [
     "type"=>"password",
 		"value"=>"password1!",
 		"regex"=>"password",
-    "action" => "Required"
   ],
    
 ];
 
+$name = "";
+
+/*THIS FUNCTION CAN BE CALLED TO ADD DATA TO THE DATABASE */
+function addData($post){
+  global $elementsArr;  
+  /* IF EVERYTHING WORKS ADD THE DATA HERE TO THE DATABASE HERE USING THE $_POST SUPER GLOBAL ARRAY */
+      //print_r($_POST);
+  if(isset($_POST['login'])){
+
+      require_once 'classes/Pdo_methods.php';
+
+      $pdo = new PdoMethods();
+
+      $sql = "SELECT name, email, password, status FROM admins WHERE email = :email";
+
+      $bindings = array(array(':email', $post['email'], 'str'));
+
+      $data = $pdo->selectBinded($sql, $bindings);
+
+      if($data == 'error'){
+        return "You must enter the correct user name and password";
+      }
+      else{
+        if(count($data) != 0){
+
+          if(password_verify($post['password'], $data[0]['password'])){
+            session_start();
+            $_SESSION['access'] = "accessGranted";
+            $_SESSION['status'] = $data[0]['status'];
+            $_SESSION['name'] = $data[0]['name'];
+
+            header('location:index.php?page=welcome');
+          }
+          else{
+            return getForm("<p>Incorrect login information</p>", $elementsArr);
+          }
+        }
+        else{
+          return getForm("<p>Incorrect login information</p>", $elementsArr);
+        }  
+      }
+  }
+}
+  
+
 /*THIS IS THEGET FROM FUCTION WHICH WILL BUILD THE FORM BASED UPON THE (UNMODIFIED OF MODIFIED) ELEMENTS ARRAY. */
 function getForm($acknowledgement, $elementsArr){
 
-  $error = '';
-
-  if(isset($_POST['login'])){
-    // IF THE USERNAME AND PASSWORD MATCH THEN REDIRECT TO 
-    if($_POST['email'] === "test@email.com" && $_POST['password'] === "password1!"){
-      
-      session_start();
-      $_SESSION['access'] = "accessGranted";
-  
-      // HERE I STORE A FIRST NAME IN THE SESSION AS WELL AND WILL DISPLAY IT ON EVERY PAGE
-      //$_SESSION['fname'] = $_POST['fname'];
-  
-      //session_regenerate_id();
-      header('location:index.php?page=welcome');
-    }
-    else {
-      $error = "Incorrect email or password";
-    }
-  }    
 
 global $stickyForm;
 
@@ -91,7 +117,7 @@ $form = <<<HTML
     
     <form method="post" action="index.php?page=login">
     <h1>Login</h1>  
-    <p class="error"><?php echo $error; ?></p>
+    
     <div class="form-group">
       <label for="email">Email {$elementsArr['email']['errorOutput']}</label>
       <input type="text" class="form-control" id="email" name="email" value="{$elementsArr['email']['value']}" >

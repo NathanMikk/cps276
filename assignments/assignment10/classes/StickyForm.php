@@ -8,7 +8,8 @@ class StickyForm extends Validation {
 		foreach($elementsArr as $k=>$v){
 			
 			/*IF THE TYPE IS TEXT THEN IT IS A TEXTBOX OR TEXTAREA FIELD THE TYPE IS DETERMINED BY WHAT IS SET UP IN THE ELEMENTS ARRAY */
-			if($elementsArr[$k]['type'] === "text" || $elementsArr[$k]['type'] === "password"){
+			// took this out of the below if statment:  || $elementsArr[$k]['type'] === "password"
+			if($elementsArr[$k]['type'] === "text"){
 				$error = $this->checkFormat($GlobalPost[$k], $elementsArr[$k]['regex']);
 				if($error == 'error'){
 					$elementsArr[$k]['errorOutput'] = $elementsArr[$k]['errorMessage'];

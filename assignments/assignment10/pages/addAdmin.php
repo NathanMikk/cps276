@@ -1,5 +1,7 @@
 <?php
 
+security();
+
 /* HERE I REQUIRE AND USE THE STICKYFORM CLASS THAT DOES ALL THE VALIDATION AND CREATES THE STICKY FORM.  THE STICKY FORM CLASS USES THE VALIDATION CLASS TO DO THE VALIDATION WORK.*/
 require_once('classes/StickyForm.php');
 $stickyForm = new StickyForm();
@@ -84,17 +86,28 @@ function addData($post){
 
       $pdo = new PdoMethods();
 
-      $hashed_password = password_hash($post['password'], PASSWORD_BCRYPT);
+      $sql = "SELECT email FROM admins WHERE email = :email";
+      $bindings = [
+        [':email',$post['email'],'str']
+      ];
 
-      $hashed_password = substr($hashed_password, 0, 50);
+      $data = $pdo->selectBinded($sql, $bindings);
+
+      if(count($data) > 0){
+        return getForm("<p>There is already an account with that email</p>", $elementsArr);
+      }
+
+      $password = password_hash($post['password'], PASSWORD_BCRYPT);
+
+      $password = substr($password, 0, 50);
 
       $sql = "INSERT INTO admins (name, email, password, status) VALUES (:name, :email, :password, :status)";
 
       $bindings = [
         [':name',$post['name'],'str'],
         [':email',$post['email'],'str'],
-        [':password',$hashed_password,'str'],
-        [':status',$post['status'],'str'],
+        [':password',$password,'str'],
+        [':status',$_POST['status'],'str'],
       ];
 
       $result = $pdo->otherBinded($sql, $bindings);
