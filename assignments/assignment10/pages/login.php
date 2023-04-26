@@ -63,10 +63,10 @@ $elementsArr = [
 
 $name = "";
 
-/*THIS FUNCTION CAN BE CALLED TO ADD DATA TO THE DATABASE */
+//THIS FUNCTION CAN BE CALLED TO ADD DATA TO THE DATABASE 
 function addData($post){
   global $elementsArr;  
-  /* IF EVERYTHING WORKS ADD THE DATA HERE TO THE DATABASE HERE USING THE $_POST SUPER GLOBAL ARRAY */
+  // IF EVERYTHING WORKS ADD THE DATA HERE TO THE DATABASE HERE USING THE $_POST SUPER GLOBAL ARRAY */
       //print_r($_POST);
   if(isset($_POST['login'])){
 
@@ -85,7 +85,7 @@ function addData($post){
       }
       else{
         if(count($data) != 0){
-
+          
           if(password_verify($post['password'], $data[0]['password'])){
             session_start();
             $_SESSION['access'] = "accessGranted";
@@ -101,8 +101,10 @@ function addData($post){
         else{
           return getForm("<p>Incorrect login information</p>", $elementsArr);
         }  
+        
       }
-  }
+    }
+  
 }
   
 

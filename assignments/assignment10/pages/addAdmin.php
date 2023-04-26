@@ -62,8 +62,8 @@ $elementsArr = [
   "password"=>[
 		"errorMessage"=>"<span style='color: red; margin-left: 15px;'>Password cannot be blank and must be a valid password containing 1 letter, 1 number, 1 special character, and between 5-20 characters in length.</span>",
     "errorOutput"=>"",
-    "type"=>"text",
-		"value"=>"Pasword1!",
+    "type"=>"password",
+		"value"=>"password1!",
 		"regex"=>"password"
   ],
 
