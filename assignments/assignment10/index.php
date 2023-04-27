@@ -5,13 +5,6 @@ require_once('pages/routes.php');
 
 $nav = "";
 
-/*
-// THIS IS THE PHP PAGE  
-if(isset($_GET) && $_GET['page'] === "login"){
-	$nav = ""; // empty $nav variable when the current page is login
-}
-echo $nav;
-*/
 
 ?>
 
@@ -28,7 +21,7 @@ echo $nav;
 		<?php
 
 		if(isset($_SESSION['access']) && $_SESSION['access'] === 'accessGranted') {
-			if($_SESSION['status'] === 'Admin'){
+			if($_SESSION['status'] === 'admin'){
 				echo $navAdmin;
 			} 
 			else {

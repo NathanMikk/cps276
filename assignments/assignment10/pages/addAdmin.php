@@ -97,9 +97,9 @@ function addData($post){
         return getForm("<p>There is already an account with that email</p>", $elementsArr);
       }
 
-      $password = password_hash($post['password'], PASSWORD_BCRYPT);
+      $password = password_hash($post['password'], PASSWORD_DEFAULT);
 
-      $password = substr($password, 0, 50);
+      //$password = substr($password, 0, 50);
 
       $sql = "INSERT INTO admins (name, email, password, status) VALUES (:name, :email, :password, :status)";
 
@@ -107,6 +107,7 @@ function addData($post){
         [':name',$post['name'],'str'],
         [':email',$post['email'],'str'],
         [':password',$password,'str'],
+        //[':password',$post['password'],str],
         [':status',$_POST['status'],'str'],
       ];
 
