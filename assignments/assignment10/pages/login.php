@@ -90,7 +90,7 @@ function addData($post){
           //echo "Entered password: " . $post['password'] . "<br>";
           //echo "Password from database: " . $data[0]['password'] . "<br>";
 
-          $hashed_password = password_hash($data[0]['password'], PASSWORD_DEFAULT);
+          $hashed_password = $data[0]['password'];
 
           //test to check the hashed password
           //echo "hashed password: " . $hashed_password . "<br>";
